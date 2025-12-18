@@ -3,6 +3,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import OpenAI from 'openai';
 import z from 'zod';
+import { conversationRepository } from './repositories/conversation.repository.js';
 
 const client = new OpenAI();
 
@@ -17,8 +18,6 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/api/hello', (req: Request, res: Response) => {
   res.json({ message: 'Hello from the server!' });
 });
-
-const conversations = new Map<string, string>(); // conversationId: lastResponseId
 
 const chatSchema = z.object({
   prompt: z
@@ -43,10 +42,11 @@ app.post('/api/chat', async (req: Request, res: Response) => {
       input: prompt,
       temperature: 0.2,
       max_output_tokens: 100,
-      previous_response_id: conversations.get(conversationId),
+      previous_response_id:
+        conversationRepository.getLastResponseId(conversationId),
     });
 
-    conversations.set(conversationId, response.id);
+    conversationRepository.setLastResponseId(conversationId, response.id);
 
     res.json({ message: response.output_text });
   } catch (error) {
