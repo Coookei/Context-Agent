@@ -1,0 +1,6 @@
+Rename this file to agent.txt
+
+Provide a system prompt for the chat agent here...
+
+Context is dynamically inserted below from context.md:
+{{context}}
