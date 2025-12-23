@@ -1,14 +1,5 @@
 import 'dotenv/config';
-import express from 'express';
-import helmet from 'helmet';
-import compression from 'compression';
-import router from './routes';
-
-const app = express();
-app.use(express.json());
-app.use(helmet());
-app.use(compression());
-app.use(router);
+import app from './app';
 
 const port = process.env.PORT || 3000;
 
