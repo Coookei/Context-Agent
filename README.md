@@ -4,10 +4,16 @@ Context Agent is a full-stack chat app that answers questions using a local Mark
 
 ## What it does
 
-- Provides a chat UI for asking questions.
+- Provides a chat UI for asking questions, with a typing indicator, and sound notifications.
 - Uses a local knowledge source (`packages/server/prompts/context.md`) to ground responses.
 - Maintains lightweight conversation state per session (in memory).
 - Validates inputs on the server and returns clean JSON responses.
+
+## Screenshots
+
+![Context Agent Chat Interface](public/example.png)
+
+_Context Agent responding to a user query_
 
 ## Tech stack
 
@@ -50,7 +56,7 @@ This project uses Bun for fast installs, workspace support, and simple scripting
 
 ### Install dependencies
 
-From the repository root:
+From the repository root run:
 
 ```bash
 bun install
@@ -58,11 +64,11 @@ bun install
 
 ### Setup Server
 
+Create the .env file and set the variables below:
+
 ```bash
 cp packages/server/.env.example packages/server/.env
 ```
-
-Set:
 
 - `OPENAI_API_KEY` (required)
 - `WHITELISTED_ORIGINS` (comma-separated list of allowed client origins, for example `http://localhost:5173/`)
@@ -74,17 +80,17 @@ Update the `agent.txt` and `context.md` files:
 
 ### Setup Client
 
+Create the .env file and set the variable below:
+
 ```bash
 cp packages/client/.env.example packages/client/.env
 ```
-
-Set:
 
 - `VITE_API_URL` (defaults to `http://localhost:3000` if omitted)
 
 ### Run in development
 
-From the repository root:
+From the repository root run:
 
 ```bash
 bun dev
