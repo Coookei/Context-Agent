@@ -1,5 +1,5 @@
 {
-  "name": "ai-chatbot",
+  "name": "context-agent",
   "module": "index.ts",
   "type": "module",
   "private": true,
