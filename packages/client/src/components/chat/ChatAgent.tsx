@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatInput, { type ChatFormData } from './ChatInput';
 import ChatMessages, { type Message } from './ChatMessages';
 import TypingIndicator from './TypingIndicator';
@@ -21,6 +21,14 @@ const ChatAgent = () => {
   const [isAgentTyping, setIsAgentTyping] = useState(false);
   const [error, setError] = useState<string>('');
   const conversationId = useRef(crypto.randomUUID());
+  const scrollAnchorRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    scrollAnchorRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
+  }, [messages, isAgentTyping, error]);
 
   const onSubmit = async ({ prompt }: ChatFormData) => {
     try {
@@ -48,10 +56,11 @@ const ChatAgent = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex flex-col flex-1 gap-3 mb-10 overflow-y-auto">
+      <div className="flex flex-col flex-1 gap-3 mb-6 overflow-y-auto">
         <ChatMessages messages={messages} />
         {isAgentTyping && <TypingIndicator />}
         {error && <p className="text-red-500">{error}</p>}
+        <div ref={scrollAnchorRef} className="h-0" />
       </div>
       <ChatInput onSubmit={onSubmit} />
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ClipboardEvent } from 'react';
+import { type ClipboardEvent } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 export type Message = {
@@ -11,15 +11,6 @@ type Props = {
 };
 
 const ChatMessages = ({ messages }: Props) => {
-  const lastMessageRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    lastMessageRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
-  }, [messages]);
-
   const onCopyMessage = (e: ClipboardEvent<HTMLDivElement>) => {
     const selection = window.getSelection()?.toString().trim();
     if (selection) {
@@ -34,7 +25,6 @@ const ChatMessages = ({ messages }: Props) => {
         <div
           key={index}
           onCopy={onCopyMessage}
-          ref={index === messages.length - 1 ? lastMessageRef : null}
           className={`px-3 py-1 max-w-md rounded-xl ${
             message.role === 'user'
               ? 'bg-blue-600 text-white self-end'
