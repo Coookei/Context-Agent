@@ -1,8 +1,11 @@
 {
   "name": "context-agent",
-  "module": "index.ts",
-  "type": "module",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "module": "index.ts",
+  "author": "Coookei",
+  "license": "MIT",
   "scripts": {
     "dev": "bun run index.ts",
     "format": "prettier --write .",

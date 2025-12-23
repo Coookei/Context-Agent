@@ -1,8 +1,9 @@
 {
   "name": "server",
-  "module": "index.ts",
-  "type": "module",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "module": "index.ts",
   "scripts": {
     "start": "bun run index.ts",
     "dev": "bun --watch run index.ts"
