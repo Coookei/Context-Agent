@@ -54,6 +54,13 @@ This project uses Bun for fast installs, workspace support, and simple scripting
 - Bun (https://bun.sh)
 - An OpenAI API key
 
+### Clone the repository
+
+```bash
+git clone https://github.com/Coookei/Context-Agent.git
+cd Context-Agent
+```
+
 ### Install dependencies
 
 From the repository root run:
@@ -62,7 +69,7 @@ From the repository root run:
 bun install
 ```
 
-### Setup Server
+### Setup server
 
 Create the .env file and set the variables below:
 
@@ -78,7 +85,7 @@ Update the `agent.txt` and `context.md` files:
 - Update `packages/server/prompts/agent.txt` to provide a system prompt for the chat agent.
 - Update `packages/server/prompts/context.md` to provide the knowledge base used in responses.
 
-### Setup Client
+### Setup client
 
 Create the .env file and set the variable below:
 
